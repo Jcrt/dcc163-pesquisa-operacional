@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CPlex.net
 {
@@ -10,6 +6,10 @@ namespace CPlex.net
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Hello Word");
+            Console.WriteLine("Tecle algo para encerrar...");
+            Console.ReadKey();
         }
     }
 }
