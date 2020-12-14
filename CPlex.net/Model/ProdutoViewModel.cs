@@ -4,6 +4,11 @@ namespace CPlex.net.Model
 {
     class ProdutoViewModel
     {
+        public ProdutoViewModel()
+        {
+            Demanda = new Dictionary<DiaDaSemana, int>();
+        }
+
         public string Nome { get; set; }
 
         public float TaxaProducao { get; set; }
@@ -13,6 +18,7 @@ namespace CPlex.net.Model
         public int Validade { get; set; }
 
         public float CustoRegular { get; set; }
+
         public float CustoHoraExtra { get; set; }
 
 
