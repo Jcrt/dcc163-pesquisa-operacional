@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace CPlex.net.Solver
 {
-    class Solver
+    class CPlexSolver
     {
         private readonly Cplex _cplex;
         private readonly INumVar[][] _variaveis;
         private readonly IRange[][] _restricoes;
         private readonly Dictionary<string, double> _varArray;
 
-        public Solver()
+        public CPlexSolver()
         {
             _cplex = new Cplex();
             _variaveis = new INumVar[1][];

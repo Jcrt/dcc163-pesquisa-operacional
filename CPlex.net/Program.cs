@@ -1,9 +1,11 @@
 ﻿using CPlex.net.Model;
+using CPlex.net.Solver;
 using ExcelDataReader;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+
 
 namespace CPlex.net
 {
@@ -13,6 +15,7 @@ namespace CPlex.net
         private static string _inputPath = "..\\..\\data\\input.xlsx";
         private static string _outputPath = "..\\..\\data\\output.xlsx";
         private static EntradaViewModel _entradaViewModel;
+        private static CPlexSolver _cplexSolver = new CPlexSolver();
 
         static void Main(string[] args)
         {
@@ -101,7 +104,7 @@ namespace CPlex.net
         /// </summary>
         private static void ExecutaOtimizacao()
         {
-
+            //_cplexSolver.Run(_entradaViewModel);
         }
 
         /// <summary>

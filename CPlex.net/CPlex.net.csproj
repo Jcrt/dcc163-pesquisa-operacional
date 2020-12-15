@@ -61,7 +61,7 @@
     <Compile Include="Model\ProdutoViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Solver\Solver.cs" />
+    <Compile Include="Solver\CPlexSolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
