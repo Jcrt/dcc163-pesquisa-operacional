@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CPlex.net.Model
 {
@@ -21,6 +22,12 @@ namespace CPlex.net.Model
 
         public float CustoHoraExtra { get; set; }
 
+        public double GetTaxaUnidadeHora()
+        {
+            if (TaxaProducao <= 0.0f)
+                throw new InvalidOperationException($"A propriedade {nameof(TaxaProducao)} não pode ser 0");
 
+            return 1 / TaxaProducao;
+        }
     }
 }
