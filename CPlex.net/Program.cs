@@ -1,6 +1,7 @@
 ﻿using CPlex.net.Model;
 using CPlex.net.Solver;
 using ExcelDataReader;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -106,6 +107,7 @@ namespace CPlex.net
         private static void ExecutaOtimizacao()
         {
             //_cplexSolver.Run(_entradaViewModel);
+            MockSaida(); //RETIRAR ESSE MÉTODO
         }
 
         /// <summary>
@@ -113,9 +115,63 @@ namespace CPlex.net
         /// </summary>
         private static void GravaResultadoOtimizacao()
         {
-            FileStream fs = new FileStream(_outputPath, FileMode.Create);
+            File.Delete(_outputPath);
+            FileInfo saida = new FileInfo(_outputPath);
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
+            ExcelPackage pck = new ExcelPackage(saida);
 
+            var planilhaSaida = pck.Workbook.Worksheets.Add("Saida");
+            planilhaSaida.Cells["A1"].Value = "Produto";
+            planilhaSaida.Cells["B1"].Value = "Produção segunda";
+            planilhaSaida.Cells["C1"].Value = "Produção terça";
+            planilhaSaida.Cells["D1"].Value = "Produção quarta";
+            planilhaSaida.Cells["E1"].Value = "Produção quinta";
+            planilhaSaida.Cells["F1"].Value = "Produção sexta";
+            planilhaSaida.Cells["G1"].Value = "Produção sábado";
+            planilhaSaida.Cells["A1:G1"].Style.Font.Bold = true;
+
+            var linha = 2;
+            foreach (var produto in _saidaViewModel.Produtos)
+            {
+                planilhaSaida.Cells["A" + linha].Value = produto.Nome;
+                planilhaSaida.Cells["B" + linha].Value = produto.Producao[DiaDaSemana.Segunda];
+                planilhaSaida.Cells["C" + linha].Value = produto.Producao[DiaDaSemana.Terça];
+                planilhaSaida.Cells["D" + linha].Value = produto.Producao[DiaDaSemana.Quarta];
+                planilhaSaida.Cells["E" + linha].Value = produto.Producao[DiaDaSemana.Quinta];
+                planilhaSaida.Cells["F" + linha].Value = produto.Producao[DiaDaSemana.Sexta];
+                planilhaSaida.Cells["G" + linha].Value = produto.Producao[DiaDaSemana.Sábado];
+
+                linha++;
+            }
+
+            pck.Save();
+        }
+
+        //RETIRAR ESSE MÉTODO
+        private static void MockSaida()
+        {
+            List<ProdutoViewModel> produtos = new List<ProdutoViewModel>();
+
+            foreach( var produto in _entradaViewModel.Produtos)
+            {
+                var produtoSaida = new ProdutoViewModel()
+                {
+                    Nome = produto.Nome
+                };
+
+                for (int i =1; i<7; i++)
+                {
+                    produtoSaida.Producao.Add((DiaDaSemana)i, i*10);
+                }
+
+                produtos.Add(produtoSaida);
+            }
+
+            _saidaViewModel = new SaidaViewModel
+            {
+                Produtos = produtos
+            };
         }
     }
 }

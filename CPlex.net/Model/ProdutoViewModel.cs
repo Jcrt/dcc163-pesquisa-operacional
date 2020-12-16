@@ -8,6 +8,7 @@ namespace CPlex.net.Model
         public ProdutoViewModel()
         {
             Demanda = new Dictionary<DiaDaSemana, int>();
+            Producao = new Dictionary<DiaDaSemana, int>();
         }
 
         public string Nome { get; set; }
