@@ -59,6 +59,7 @@
     <Compile Include="Model\DiaDaSemana.cs" />
     <Compile Include="Model\EntradaViewModel.cs" />
     <Compile Include="Model\ProdutoViewModel.cs" />
+    <Compile Include="Model\SaidaViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solver\CPlexSolver.cs" />

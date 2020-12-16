@@ -29,5 +29,7 @@ namespace CPlex.net.Model
 
             return 1 / TaxaProducao;
         }
+
+        public Dictionary<DiaDaSemana, int> Producao { get; set; }
     }
 }
