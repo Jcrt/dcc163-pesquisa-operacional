@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CPlex.net.Model
 {
     class EntradaViewModel
     {
+        private IDictionary<string, ProdutoViewModel> _mapeamentoProdutos;
+
         public EntradaViewModel()
         {
             Produtos = new List<ProdutoViewModel>();
@@ -14,5 +17,12 @@ namespace CPlex.net.Model
 
         public Dictionary<DiaDaSemana,int> CargaHorariaDisponivel  { get; set; }
 
+        public IDictionary<string, ProdutoViewModel> GetMapeamentoProduto()
+        {
+            if(_mapeamentoProdutos == null)
+                _mapeamentoProdutos = Produtos.ToDictionary(key => key.GetNomeLimpo(), value => value);
+            
+            return _mapeamentoProdutos;
+        }
     }
 }

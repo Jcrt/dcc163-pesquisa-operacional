@@ -31,6 +31,18 @@ namespace CPlex.net.Model
             return 1 / TaxaProducao;
         }
 
+        public string GetNomeVariavel(DiaDaSemana diaSemana, bool isHoraExtra = false)
+        {
+            var tipoHora = !isHoraExtra ? "HR" : "HE";
+
+            return $"{GetNomeLimpo()}_{tipoHora}_{diaSemana.ToString().ToUpper()}";
+        }
+
+        public string GetNomeLimpo()
+        {
+            return Nome.Trim().ToLowerInvariant();
+        }
+
         public Dictionary<DiaDaSemana, int> Producao { get; set; }
     }
 }

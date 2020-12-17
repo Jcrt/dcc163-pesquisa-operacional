@@ -17,7 +17,7 @@ namespace CPlex.net
         private static string _outputPath = "..\\..\\data\\output.xlsx";
         private static EntradaViewModel _entradaViewModel;
         private static SaidaViewModel _saidaViewModel;
-        private static CPlexSolver _cplexSolver = new CPlexSolver();
+        private static readonly CPlexSolver _cplexSolver = new CPlexSolver();
 
         static void Main(string[] args)
         {
@@ -106,7 +106,7 @@ namespace CPlex.net
         /// </summary>
         private static void ExecutaOtimizacao()
         {
-            //_cplexSolver.Run(_entradaViewModel);
+            _cplexSolver.Run(_entradaViewModel);
             MockSaida(); //RETIRAR ESSE MÉTODO
         }
 
